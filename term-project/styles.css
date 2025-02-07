@@ -1,0 +1,205 @@
+/* Updated U.G. Café Styles */
+@font-face {
+    font-family: 'Fusterd';
+    src: url('/fusterd-brush/Fusterd\ Brush\ Two.otf') format('woff2'),
+         url('/fusterd-brush/Fusterd\ Brush\ Two.ttf') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #3e2f2f; /* Dark coffee theme */
+    color: #f5f5dc; /* Light beige text */
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.dark-header {
+    background: linear-gradient(to right, black, gray); /* Example dark gradient */
+    padding: .5%;
+    text-align: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#UG {
+    display: flex;
+    align-items: center;
+    color: #d4a373; /* Warm golden accent */
+}
+  
+  /* Style for "U.G." */
+  .ug {
+    font-family: 'Arial', sans-serif; /* Example font */
+    font-size: 30pt; /* Adjust size as needed */
+    color: #f0e5e5; /* Example color */
+    margin-right: 15px; /* Space between "U.G." and "Café" */
+  }
+  
+  /* Style for "Café" */
+  .cafe {
+    font-family: 'Fusterd', cursive; /* Ensure 'Fusterd' font is properly loaded */
+    font-size: 54pt; /* Adjust size as needed */
+  }
+
+
+  .tagline {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14pt; /* Adjust as needed */
+    margin-top: 5px; /* Adds space between header and tagline */
+    color: white; /* Adjust for visibility */
+    text-align: center; /* Centers the tagline */
+    display: block; /* Ensures it stays on its own line */
+}
+
+/* Positions the coffee bean image floating on top */
+.header-image {
+    position: absolute;
+    top: 0; /* Adjust as needed */
+    right: 0; /* Aligns it to the far right */
+    width: 246.5px; /* Adjust size as needed */
+    height: auto;
+    z-index: 10; /* Ensures it's above all other elements */
+    pointer-events: none; /* Prevents it from interfering with clicks 
+*/
+    mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 75%);
+    -webkit-mask-image: radial-gradient(square, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 75%);
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #f5f5dc;
+    text-decoration: none;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-image {
+    width: 80%;
+    border-radius: 10px;
+}
+
+.featured-images img {
+    width: 30%;
+    margin: 10px;
+    border-radius: 8px;
+    border: 2px solid #d4a373;
+}
+
+.gradient-box {
+    position: relative;
+    display: inline-block;
+    padding: 15px;
+    margin: 20px auto;
+    width: 60%;
+    background-color: #523c3c;
+}
+
+.gradient-box::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(to right, #b3773e, #d4a373);
+    z-index: -1;
+    border-radius: 5px;
+}
+
+.options-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.option-box {
+    background-color: #523c3c;
+    padding: 10px;
+    border-radius: 10px;
+    width: 200px;
+
+}
+
+hr {
+    
+    width: 75%;
+    height: 1.8px;
+    background:#b3773e;
+}
+
+.category {
+    display: inline-flex;
+    justify-content: space-around;
+    margin: 50px;
+}
+
+.category img {
+    width: 150px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.category p {
+    display: inline-flex;
+    justify-content: space-around;
+    margin: 10px;
+}
+
+footer {
+    background-color: #2b1e1e;
+    padding: 10px;
+    color: #f5f5dc;
+}
+
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center products */
+    gap: 20px; /* Adds space between items */
+    padding: 20px;
+    max-width: 1100px; /* Prevents products from stretching too much */
+    margin: auto; /* Centers the grid */
+}
+
+.product {
+    background-color: #523c3c; /* Café theme */
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    width: 250px; /* Fixed width to ensure 4 per row */
+    box-sizing: border-box;
+}
+
+/* 🟢 Ensure all images have the same size */
+.product img {
+    width: 150px; /* Set uniform width */
+    height: 150px; /* Set uniform height */
+    object-fit: cover; /* Ensures image fills space properly */
+    border-radius: 10px;
+}
+
+/* 🟢 Center and style text inside each product */
+.product p {
+    margin: 5px 0;
+    font-size: 14px;
+}
