@@ -175,9 +175,9 @@ footer {
     display: center ;
     flex-wrap: wrap;
     justify-content: center; /* Center products */
-    gap: 20px; /* Adds space between items */
+    gap: 50px; /* Adds space between items */
     padding: 20px;
-    max-width: 1100px; /* Prevents products from stretching too much */
+    max-width: 1000px; /* Prevents products from stretching too much */
     margin: auto; /* Centers the grid */
 }
 
