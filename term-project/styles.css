@@ -205,8 +205,8 @@ footer {
 }
 
 #product-details img {
-    width: 150px; /* Set uniform width */
-    height: 150px; /* Set uniform height */
+    width: 100px; /* Set uniform width */
+    height: 100px; /* Set uniform height */
     object-fit:contain; /* Ensures image fills space properly */
     border-radius: 20px;
     padding: 20px;
