@@ -172,7 +172,7 @@ footer {
 }
 
 .product-grid {
-    display: flex;
+    display: center ;
     flex-wrap: wrap;
     justify-content: center; /* Center products */
     gap: 20px; /* Adds space between items */
@@ -202,4 +202,21 @@ footer {
 .product p {
     margin: 5px 0;
     font-size: 14px;
+}
+
+#product-details img {
+    width: 150px; /* Set uniform width */
+    height: 150px; /* Set uniform height */
+    object-fit:contain; /* Ensures image fills space properly */
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#product-details {
+    background-color: #523c3c; /* Café theme */
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    width: 250px; /* Fixed width to ensure 4 per row */
+    box-sizing: border-box;
 }
