@@ -82,25 +82,6 @@ body {
     -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 75%);
     opacity: 0.9;
 }
-/* Ensure Header Image Scales Properly on Smaller Screens */
-@media (max-width: 1024px) {
-    .header-image {
-        width: 200px; /* Slightly smaller on tablets */
-    }
-}
-
-@media (max-width: 768px) {
-    .header-image {
-        width: 180px; /* Adjust size for smaller screens */
-        right: 5px; /* Keeps it positioned correctly */
-    }
-}
-
-@media (max-width: 480px) {
-    .header-image {
-        width: 150px; /* Keeps a readable size on small phones */
-    }
-}
 
 /* About Us Box */
 .about-us-box {
