@@ -312,3 +312,104 @@ body::before {
     position: relative;
     top: -20px;
 }
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    /* Adjust the options section for tablets */
+    #options {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .option-box {
+        width: 45%; /* Make the boxes smaller but keep them side-by-side */
+    }
+
+    /* Adjust category images */
+    .category img {
+        width: 120px; /* Slightly smaller images for tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Stack option boxes for better readability */
+    #options {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .option-box {
+        width: 90%; /* Full width on small screens */
+        margin-bottom: 15px;
+    }
+
+    /* Ensure images resize correctly */
+    .category img {
+        width: 80%; /* Images take up most of the screen width */
+        max-width: 250px; /* Prevent them from getting too big */
+    }
+
+    /* Adjust the header image */
+    .header-image {
+        width: 180px; /* Reduce the size of the header image */
+        right: 5px; /* Adjust its position */
+    }
+
+    /* Improve text readability */
+    .tagline {
+        font-size: 12pt;
+    }
+
+    #catergory-txt h3 {
+        font-size: 30px; /* Smaller font for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    /* Make navigation more mobile-friendly */
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+
+    /* Further reduce header image */
+    .header-image {
+        width: 150px;
+    }
+
+    /* Make categories stack */
+    #categories {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .category img {
+        width: 90%; /* Almost full width on mobile */
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .logo-container {
+        transform: scale(0.9); /* Slightly shrink the logo on tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .logo-container {
+        transform: scale(0.8); /* Reduce size while keeping position */
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-container {
+        transform: scale(0.7); /* Keep same ratio but slightly smaller */
+    }
+}
