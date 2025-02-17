@@ -20,7 +20,7 @@ body {
 .dark-header {
     background: linear-gradient(to right, black, gray);
     padding: 0.5%;
-    text-align: center;
+    text-align: flex-start;
     width: 100%;
     position: relative;
     top: 0;
