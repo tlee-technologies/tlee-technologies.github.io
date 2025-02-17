@@ -69,20 +69,6 @@ body {
     display: block;
 }
 
-/* Header Image */
-.header-image {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 10%;
-    height: auto;
-    z-index: 10;
-    pointer-events: none;
-    mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 75%);
-    -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 75%);
-    opacity: 0.9;
-}
-
 /* About Us Box */
 .about-us-box {
     position: relative;
