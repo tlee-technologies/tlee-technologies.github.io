@@ -404,12 +404,12 @@ body::before {
 
 @media (max-width: 768px) {
     .logo-container {
-        transform: scale(0.8); /* Reduce size while keeping position */
+        transform: scale(0.5); /* Reduce size while keeping position */
     }
 }
 
 @media (max-width: 480px) {
     .logo-container {
-        transform: scale(0.7); /* Keep same ratio but slightly smaller */
+        transform: scale(0.3); /* Keep same ratio but slightly smaller */
     }
 }
