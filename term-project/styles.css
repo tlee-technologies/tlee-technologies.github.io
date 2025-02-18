@@ -404,3 +404,27 @@ body::before {
         transform: scale(0.3); /* Keep same ratio but slightly smaller */
     }
 }
+
+.product {
+    position: relative; /* Allows layering */
+    background-color: #523c3c; /* Dark coffee background */
+    color: #f5f5dc; /* Light beige text */
+    padding: 15px;
+    border-radius: 15px; /* Rounded corners */
+    width: 200px; /* Keeps the current size */
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Underlay Effect */
+.product::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(to right, #b3773e, #d4a373); /* Golden gradient */
+    border-radius: 20px; /* Matches the option box */
+    z-index: -1; /* Keeps it behind */
+}
