@@ -10,53 +10,47 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #3e2f2f; /* Dark coffee theme */
-    color: #f5f5dc; /* Light beige text */
-    margin: 0;
-    padding: 0;
+    color: #f5f5dc; 
     text-align: center;
 }
 
 /* Header Styles */
 .dark-header {
     background: linear-gradient(to right, black, gray);
-    padding: 0.5%;
-    text-align: flex-start;
+    padding: .5%;
+    text-align: center;
     width: 100%;
     position: relative;
     top: 0;
     left: 0;
 }
 
-/* Ensure Full-Width Header on All Devices */
-@media (max-width: 1024px) {
-    .dark-header {
-        width: 100vw; /* Forces full viewport width */
-    }
-}
 
 .logo-container {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 5px;
+    height: fit-content;
 }
 
-#UG {
+#UG-CAFE{
     display: flex;
     align-items: center;
-    color: #d4a373;
 }
 
 /* Logo Styling */
 .ug {
-    font-family: 'Arial', sans-serif;
-    font-size: 30pt;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 34pt;
     color: #f0e5e5;
-    margin-right: 15px;
+    margin-right: 5px;
 }
 
 .cafe {
     font-family: 'Fusterd', cursive;
     font-size: 54pt;
+    color: #d4a373;
 }
 
 /* Tagline */
