@@ -46,15 +46,19 @@ document.addEventListener("DOMContentLoaded", () => {
         // Populate the dish options list
         menuItems.forEach(item => {
             let li = document.createElement("li");
-            li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
-            li.dataset.name = item.name;
-            li.dataset.price = item.price;
-            
-            li.addEventListener("click", () => {
+
+            // Create button inside the li
+            let button = document.createElement("button");
+            button.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+            button.dataset.name = item.name;
+            button.dataset.price = item.price;
+
+            button.addEventListener("click", () => {
                 addToMealPlan(item.name, item.price);
             });
 
-            dishOptions.appendChild(li);
+            li.appendChild(button); // Append button to li
+            dishOptions.appendChild(li); // Append li to the list
         });
 
         function addToMealPlan(name, price) {
