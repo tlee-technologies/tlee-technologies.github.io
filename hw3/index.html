@@ -1,12 +1,63 @@
 <!DOCTYPE html>
+<!--
+  Name: Terrance Lee
+  Date: 02-17-2025
+  CSC 372-01
+
+  This is the main page for the Dine On Campus project. It features food and drink
+  recommendations near UNCG's Petty building, with interactive dish selection.
+-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dine On Campus</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
-    <h1> Homeworks 3</h1>
-    <p> HW3 </p>
+    <header>
+        <h1>Dine On Campus</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="mealplan.html">Meal Plan</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="introduction">
+            <h2>Welcome, Food Lovers!</h2>
+            <p>Are you a culinary adventurer in search of the perfect meal on campus? Look no further! We've curated a list of the most exceptional dishes that are sure to tantalize your taste buds. From fresh pizzas to mouthwatering sushi, this list has got you covered. So, put on your foodie hat and let's dive into the delightful world of flavors.</p>
+        </section>
+        
+        <section class="recommendations">
+            <!-- Placeholder for three recommended restaurants -->
+            <article class="restaurant">
+                <h3>Restaurant Name</h3>
+                <p>Location: [Address]</p>
+                <p>Specialties: [Type of Cuisine]</p>
+                <p>Hours: [Opening Hours]</p>
+                
+                <!-All pictures came from Panda Express store page: https://www.pandaexpress.com/our-food-philosophy#paragraph-109->
+                <div class="dish-gallery">
+                    <img src="https://www.pandaexpress.com/sites/default/files/styles/webp_conversion/public/2021-09/Eggplant%20Tofu%402x.png.webp?itok=pf5iC-F8" alt="Dish 1" class="dish" data-name="Eggplant Tofu" data-price="$8.70">
+                    <img src="https://www.pandaexpress.com/sites/default/files/styles/webp_conversion/public/2021-09/Sweetfire%20Chicken%20Breast%402x.png.webp?itok=LGMZuJMm" alt="Dish 2" class="dish" data-name="Sweetfire Chicken Breast" data-price="$8.70">
+                    <img src="https://www.pandaexpress.com/sites/default/files/styles/webp_conversion/public/2021-09/Honey%20Walnut%20Shrimp%402x.png.webp?itok=l5RTKHV9" alt="Dish 3" class="dish" data-name="Honey Walnut Shrimp" data-price="$11.70">
+                    <img src="https://www.pandaexpress.com/sites/default/files/styles/webp_conversion/public/2021-09/Strongbean%20Chicken%20Breast%402x.png.webp?itok=rz5TA4W1" alt="Dish 3" class="dish" data-name="String Bean Chicken Breast" data-price="$8.70">
+                </div>
+            </article>
+        </section>
+        
+        <aside id="dish-description" class="hidden">
+            <h2 id="dish-name"></h2>
+            <p id="dish-price"></p>
+        </aside>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Dine On Campus | CSC 372</p>
+    </footer>
 </body>
 </html>
