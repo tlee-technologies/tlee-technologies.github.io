@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (dishes.length > 0) {
         dishes.forEach(dish => {
             dish.addEventListener("click", () => {
-                dishes.forEach(d => d.classList.remove("selected"));
+                dishes.forEach(dish => dish.classList.remove("selected"));
                 dish.classList.add("selected");
 
                 dishName.textContent = dish.dataset.name;
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (dishOptions && selectedDishes && totalCostElement) {
         let totalCost = 0;
 
-        // Updated dish options to match index.html
+        // Updated dish options 
         const menuItems = [
             { name: "Eggplant Tofu", price: 8.70 },
             { name: "Sweetfire Chicken Breast", price: 8.70 },
