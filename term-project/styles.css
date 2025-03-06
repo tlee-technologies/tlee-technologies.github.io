@@ -1,4 +1,3 @@
-/* Updated U.G. Café Styles */
 @font-face {
     font-family: 'Fusterd';
     src: url('/fusterd-brush/Fusterd-Brush-Two.otf') format('woff2'),
@@ -172,7 +171,7 @@ footer {
     color: #f5f5dc;
 }
 
-/* Updated Product Grid for Four Columns on Laptops */
+/* Product Grid for Four Columns on Laptops */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* Four equal columns for laptops */
@@ -293,7 +292,7 @@ body::before {
     opacity: 0.9;
 }
 
-/* Adjusted Category Spacing */
+/* Category Spacing */
 #categories {
     margin-bottom: 20px;
 }
@@ -427,4 +426,66 @@ body::before {
     background: linear-gradient(to right, #b3773e, #d4a373); /* Golden gradient */
     border-radius: 20px; /* Matches the option box */
     z-index: -1; /* Keeps it behind */
+}
+/* Cart Page Styles */
+.cart-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.cart-item {
+    background-color: #523c3c;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border: 2px solid #d4a373;
+}
+
+.cart-item img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+}
+
+input[type="number"] {
+    width: 60px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #d4a373;
+}
+
+button.remove-item, .checkout-btn {
+    background-color: #d4a373;
+    color: #3e2f2f;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.remove-item:hover, .checkout-btn:hover {
+    background-color: #b3773e;
+    color: #fff;
+}
+
+.cart-summary {
+    margin: 20px auto;
+    max-width: 400px;
+    background-color: #523c3c;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border: 2px solid #d4a373;
+}
+
+@media (max-width: 768px) {
+    .cart-grid {
+        grid-template-columns: 1fr;
+    }
 }
