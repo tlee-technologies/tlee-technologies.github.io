@@ -447,8 +447,8 @@ body::before {
 }
 
 .cart-item img {
-    width: 80px;
-    height: 80px;
+    width: auto;
+    height: 120px;
     border-radius: 8px;
 }
 

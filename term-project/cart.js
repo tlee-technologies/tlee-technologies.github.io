@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cartItems.forEach((item, index) => {
             subtotal += item.price * item.quantity;
             cartItemsContainer.innerHTML += `
-                <div class="cart-item">
+                <div class ="cart-item">
                     <img src="${item.image}" alt="${item.name}">
                     <p><b>${item.name}</b></p>
                     <p>$${item.price.toFixed(2)}</p>
