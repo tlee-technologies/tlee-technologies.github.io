@@ -1,93 +1,45 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const cartItemsContainer = document.querySelector('.cart-grid');
-    const cartSummaryContainer = document.querySelector('.cart-summary');
+// File: cart.js
+// Author: TJ
+// Date: 2025-03-06
+// Description: JavaScript for handling cart operations, including adding items and calculating the total.
 
-    // Load cart items from localStorage
-    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-
-    // Render cart items on the cart page
-    function renderCartItems() {
-        cartItemsContainer.innerHTML = '';
-        let subtotal = 0;
-        cartItems.forEach((item, index) => {
-            subtotal += item.price * item.quantity;
-            cartItemsContainer.innerHTML += `
-                <div class ="cart-item">
-                    <img src="${item.image}" alt="${item.name}">
-                    <p><b>${item.name}</b></p>
-                    <p>$${item.price.toFixed(2)}</p>
-                    <input type="number" value="${item.quantity}" min="1" data-index="${index}" class="item-quantity">
-                    <button class="remove-item" data-index="${index}">Remove</button>
-                    <p class="item-total">Total: $${(item.price * item.quantity).toFixed(2)}</p>
-                </div>
-            `;
-        });
-        renderCartSummary(subtotal);
-    }
-
-    // Calculate and display the cart summary
-    function renderCartSummary(subtotal) {
-        const taxRate = 0.0675;
-        const tax = subtotal * taxRate;
-        const total = subtotal + tax;
-
-        cartSummaryContainer.innerHTML = `
-            <p><b>Subtotal:</b> $${subtotal.toFixed(2)}</p>
-            <p><b>Tax (6.75%):</b> $${tax.toFixed(2)}</p>
-            <h3><b>Total:</b> $${total.toFixed(2)}</h3>
-            <button class="checkout-btn">Checkout</button>
-        `;
-    }
-
-    // Add to Cart button handler (for product detail pages)
-    document.querySelectorAll('.product button').forEach(button => {
+// Add event listeners to all 'Add to Cart' buttons on the product pages
+window.addEventListener('DOMContentLoaded', () => {
+    const addToCartButtons = document.querySelectorAll('button');
+    addToCartButtons.forEach(button => {
         button.addEventListener('click', () => {
-            const productElement = button.parentElement;
-            const product = {
-                image: productElement.querySelector('img').src,
-                name: productElement.querySelector('h2').innerText,
-                price: parseFloat(productElement.querySelector('i').innerText.replace('$', '')),
-                quantity: 1
-            };
-            addToCart(product);
+            const product = button.parentElement;
+            const productName = product.querySelector('h2').textContent;
+            const productPrice = parseFloat(product.querySelector('p i').textContent.replace('$', ''));
+            addItemToCart(productName, productPrice);
         });
     });
 
-    // Add item to the cart and save to localStorage
-    function addToCart(product) {
-        const existingItem = cartItems.find(item => item.name === product.name && item.price === product.price);
-        if (existingItem) {
-            existingItem.quantity += 1;
-        } else {
-            cartItems.push(product);
-        }
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        renderCartItems();
-    }
-
-    // Update item quantity
-    cartItemsContainer.addEventListener('input', (e) => {
-        if (e.target.classList.contains('item-quantity')) {
-            const index = e.target.getAttribute('data-index');
-            const quantity = parseInt(e.target.value);
-            if (quantity > 0) {
-                cartItems[index].quantity = quantity;
-                localStorage.setItem('cartItems', JSON.stringify(cartItems));
-                renderCartItems();
-            }
-        }
-    });
-
-    // Remove item from the cart
-    cartItemsContainer.addEventListener('click', (e) => {
-        if (e.target.classList.contains('remove-item')) {
-            const index = e.target.getAttribute('data-index');
-            cartItems.splice(index, 1);
-            localStorage.setItem('cartItems', JSON.stringify(cartItems));
-            renderCartItems();
-        }
-    });
-
-    // Initialize the cart page
-    renderCartItems();
+    updateCartDisplay();
 });
+
+// Add item to cart in local storage
+function addItemToCart(name, price) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push({ name, price });
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartDisplay();
+}
+
+// Update the cart display on the cart page
+function updateCartDisplay() {
+    const cartItemsContainer = document.getElementById('cart-items');
+    const totalPriceElement = document.getElementById('total-price');
+    if (cartItemsContainer && totalPriceElement) {
+        cartItemsContainer.innerHTML = '';
+        let total = 0;
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.forEach(item => {
+            const itemElement = document.createElement('p');
+            itemElement.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+            cartItemsContainer.appendChild(itemElement);
+            total += item.price;
+        });
+        totalPriceElement.textContent = `Total: $${total.toFixed(2)}`;
+    }
+}

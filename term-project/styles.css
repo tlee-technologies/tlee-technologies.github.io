@@ -426,7 +426,7 @@ body::before {
     background: linear-gradient(to right, #b3773e, #d4a373); /* Golden gradient */
     border-radius: 20px; /* Matches the option box */
     z-index: -1; /* Keeps it behind */
-}
+
 /* Cart Page Styles */
 .cart-grid {
     display: grid;
@@ -488,4 +488,5 @@ button.remove-item:hover, .checkout-btn:hover {
     .cart-grid {
         grid-template-columns: 1fr;
     }
+}
 }
