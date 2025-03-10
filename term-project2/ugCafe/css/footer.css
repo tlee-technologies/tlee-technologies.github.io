@@ -1,63 +1,101 @@
-footer{
+footer {
     position: relative;
     width: 100%;
-    height:100px;
     background-color: #2b1e1e;
-    padding: 40px 10vw;
-    padding-bottom: 200px;
-    /*box-shadow: 0px 0px 10px 0px #00000066;*/
+    padding: 40px 5vw;
+    padding-bottom: 100px;
     color: #b3773e;
-
+    box-sizing: border-box;
 }
 
-.footer-content{
+.footer-content {
     display: flex;
     flex-direction: column;
     width: 100%;
-    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
 }
-
 
 .footer-links {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
     list-style: none;
-    font-family: 'fustered', cursive;
-    font-size: 20px;
-    font-weight: 500; 
+    font-family: 'Fusterd', cursive;
+    font-size: 1.25rem; /* 20px */
+    font-weight: 500;
     padding: 0;
     margin: 0;
+    gap: 15px;
 }
 
 .footer-links a {
-    text-decoration: none; 
-    color: #f3efec; 
+    text-decoration: none;
+    color: #f3efec;
     padding: 5px;
+    transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
-    color: #b3773e; 
+    color: #b3773e;
     text-decoration: underline;
 }
 
 .footer-copyright {
     display: flex;
     justify-content: center;
-    margin-top: 75px;
-    margin-left: 118px;
-    }   
-
-
-#copyright-icon{
-    height: 15px;
-    margin-right: 7px;
-    margin-left: 7px;
-    margin-bottom: -15px;
+    margin-top: 2rem; /* Scales well with different screens */
+    flex-wrap: wrap;
 }
 
-.footer-content .logo{
+#copyright-icon {
+    height: 15px;
+    margin: 0 7px;
+    vertical-align: middle;
+}
+
+.footer-content .logo {
     height: 65px;
-    position : absolute;
-    top: 110px;
-    left: 640px;
+    position: relative;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 200px;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    footer {
+        padding: 20px 5vw;
+        padding-bottom: 80px;
     }
+
+    .footer-links {
+        flex-direction: column;
+        font-size: 1rem;
+    }
+
+    .footer-copyright {
+        margin-left: 0;
+        margin-top: 1.5rem;
+        text-align: center;
+    }
+
+    .footer-content .logo {
+        top: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-links {
+        font-size: 0.875rem;
+    }
+
+    .footer-content .logo {
+        max-width: 120px;
+        top: 30px;
+    }
+}
