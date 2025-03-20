@@ -40,7 +40,7 @@
 /* Search Bar */
 .search {
     width: 500px;
-    max-width: 80vw; /* Ensure search bar doesn't overflow on small screens */
+    max-width: 80vw; 
     display: flex;
 }
 

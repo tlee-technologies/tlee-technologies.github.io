@@ -7,7 +7,7 @@ const createFooter = () => {
             <div class="footer-ul-container">
                 <ul class="footer-links">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="temp-menu.html">Menu</a></li>
                     <li><a href="contact.html">About</a></li>
                     <li><a href="about.html">Login</a></li>
                     <li><a href="contact.html">Cart</a></li>
