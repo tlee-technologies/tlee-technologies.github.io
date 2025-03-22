@@ -8,66 +8,60 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #3e2f2f; /* Dark coffee theme */
-    color: #f5f5dc; 
+    background-color: #3e2f2f;
+    color: #f5f5dc;
     text-align: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
-/* Header Styles */
 .dark-header {
     background: linear-gradient(to right, black, gray);
-    padding: .5%;
-    text-align: center;
+    padding: 0.5%;
     width: 100%;
     position: relative;
     top: 0;
     left: 0;
 }
 
-
 .logo-container {
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 5px;
-    height: fit-content;
 }
 
-#UG-CAFE{
+#UG-CAFE {
     display: flex;
     align-items: center;
 }
 
-/* Logo Styling */
 .ug {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 34pt;
+    font-size: 2rem;
     color: #f0e5e5;
     margin-right: 5px;
 }
 
 .cafe {
     font-family: 'Fusterd', cursive;
-    font-size: 54pt;
+    font-size: 3rem;
     color: #d4a373;
 }
 
-/* Tagline */
 .tagline {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 14pt;
+    font-size: 1rem;
     margin-top: 5px;
     color: white;
-    text-align: center;
-    display: block;
 }
 
-/* About Us Box */
 .about-us-box {
-    position: relative;
     padding: 20px;
     margin: 40px auto;
-    width: 80%;
+    width: 90%;
     max-width: 600px;
     background-color: #523c3c;
     color: #f5f5dc;
@@ -75,27 +69,16 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.about-us-box::before {
-    content: "";
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    background: linear-gradient(to right, #b3773e, #d4a373);
-    z-index: -1;
-    border-radius: 20px;
-}
-
-/* Navigation */
 nav ul {
     list-style-type: none;
     padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 nav ul li {
-    display: inline;
-    margin: 0 15px;
+    margin: 10px;
 }
 
 nav ul li a {
@@ -103,79 +86,64 @@ nav ul li a {
     text-decoration: none;
 }
 
-/* Featured Images */
 .featured-images img {
-    width: 30%;
+    width: 80%;
+    max-width: 300px;
     margin: 10px;
     border-radius: 8px;
     border: 2px solid #d4a373;
 }
 
-/* Options Container */
 #options {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+    padding: 10px;
 }
 
 .option-box {
-    position: relative; /* Allows layering */
-    background-color: #523c3c; /* Dark coffee background */
-    color: #f5f5dc; /* Light beige text */
+    background-color: #523c3c;
+    color: #f5f5dc;
     padding: 15px;
-    border-radius: 15px; /* Rounded corners */
-    width: 200px; /* Keeps the current size */
+    border-radius: 15px;
+    width: 90%;
+    max-width: 200px;
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Underlay Effect */
-.option-box::before {
-    content: "";
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    background: linear-gradient(to right, #b3773e, #d4a373); /* Golden gradient */
-    border-radius: 20px; /* Matches the option box */
-    z-index: -1; /* Keeps it behind */
-}
-
-
-
-/* Horizontal Rule */
 hr {
     width: 75%;
+    max-width: 500px;
     height: 1.8px;
     background: #b3773e;
 }
 
-/* Categories */
 .category {
-    display: inline-flex;
-    justify-content: space-around;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     margin: 50px;
 }
 
 .category img {
-    width: 150px;
+    width: 100px;
+    max-width: 100%;
     height: auto;
     border-radius: 10px;
 }
 
-/* Footer */
 footer {
     background-color: #2b1e1e;
     padding: 10px;
     color: #f5f5dc;
 }
 
-/* Product Grid for Four Columns on Laptops */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Four equal columns for laptops */
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
     padding: 20px;
     max-width: 1400px;
     margin: auto;
@@ -186,7 +154,6 @@ footer {
     padding: 15px;
     border-radius: 10px;
     text-align: center;
-    box-sizing: border-box;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -196,20 +163,11 @@ footer {
 }
 
 .product img {
-    width: 150px;
-    height: 150px;
+    width: 100%;
+    max-width: 150px;
+    height: auto;
     object-fit: cover;
     border-radius: 10px;
-}
-
-.product h2 {
-    font-size: 18px;
-    margin: 10px 0;
-}
-
-.product p {
-    margin: 5px 0;
-    font-size: 14px;
 }
 
 .product button {
@@ -219,7 +177,7 @@ footer {
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 1rem;
     transition: background-color 0.3s ease;
 }
 
@@ -228,209 +186,9 @@ footer {
     color: #fff;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 1200px) {
-    .product-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 1024px) {
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .product-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Background Styling */
-body {
-    background-color: #3e2f2f;
-    background-image: repeating-linear-gradient(
-        0deg,
-        rgba(211, 170, 115, 0.1) 0,
-        rgba(211, 170, 115, 0.1) 50px,
-        rgba(0, 0, 0, 0) 50px,
-        rgba(0, 0, 0, 0) 100px
-    );
-    background-size: 100% 150px;
-    color: #f5f5dc;
-}
-
-/* Decorative Text Overlay */
-body::before {
-    content: "Hot Coffee   Iced Coffee   ";
-    font-family: 'Fusterd', cursive;
-    font-size: 60px;
-    color: rgba(211, 170, 115, 0.3);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    overflow: hidden;
-    white-space: nowrap;
-    transform: rotate(-45deg);
-    opacity: 0.1;
-}
-
-/* Category Text Styling */
-#catergory-txt h3 {
-    font-family: 'Fusterd', cursive;
-    font-size: 50px;
-    color: #d4a373;
-    position: relative;
-    bottom: 20px;
-    width: 100%;
-    text-align: center;
-    z-index: 1000;
-    opacity: 0.9;
-}
-
-/* Category Spacing */
-#categories {
-    margin-bottom: 20px;
-}
-
-.category img {
-    margin-bottom: 5px;
-    position: relative;
-    top: -20px;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 1024px) {
-    /* Adjust the options section for tablets */
-    #options {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .option-box {
-        width: 45%; /* Make the boxes smaller but keep them side-by-side */
-    }
-
-    /* Adjust category images */
-    .category img {
-        width: 120px; /* Slightly smaller images for tablets */
-    }
-}
-
-@media (max-width: 768px) {
-    /* Stack option boxes for better readability */
-    #options {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .option-box {
-        width: 90%; /* Full width on small screens */
-        margin-bottom: 15px;
-    }
-
-    /* Ensure images resize correctly */
-    .category img {
-        width: 80%; /* Images take up most of the screen width */
-        max-width: 250px; /* Prevent them from getting too big */
-    }
-
-    /* Adjust the header image */
-    .header-image {
-        width: 180px; /* Reduce the size of the header image */
-        right: 5px; /* Adjust its position */
-    }
-
-    /* Improve text readability */
-    .tagline {
-        font-size: 12pt;
-    }
-
-    #catergory-txt h3 {
-        font-size: 30px; /* Smaller font for smaller screens */
-    }
-}
-
-@media (max-width: 480px) {
-    /* Make navigation more mobile-friendly */
-    nav ul {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 0;
-    }
-
-    nav ul li {
-        margin: 5px 0;
-    }
-
-    /* Further reduce header image */
-    .header-image {
-        width: 150px;
-    }
-
-    /* Make categories stack */
-    #categories {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .category img {
-        width: 90%; /* Almost full width on mobile */
-        max-width: 200px;
-    }
-}
-
-@media (max-width: 1024px) {
-    .logo-container {
-        transform: scale(0.9); /* Slightly shrink the logo on tablets */
-    }
-}
-
-@media (max-width: 768px) {
-    .logo-container {
-        transform: scale(0.5); /* Reduce size while keeping position */
-    }
-}
-
-@media (max-width: 480px) {
-    .logo-container {
-        transform: scale(0.3); /* Keep same ratio but slightly smaller */
-    }
-}
-
-.product {
-    position: relative; /* Allows layering */
-    background-color: #523c3c; /* Dark coffee background */
-    color: #f5f5dc; /* Light beige text */
-    padding: 15px;
-    border-radius: 15px; /* Rounded corners */
-    width: 200px; /* Keeps the current size */
-    text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Underlay Effect */
-.product::before {
-    content: "";
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    background: linear-gradient(to right, #b3773e, #d4a373); /* Golden gradient */
-    border-radius: 20px; /* Matches the option box */
-    z-index: -1; /* Keeps it behind */
-
-/* Cart Page Styles */
 .cart-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
     max-width: 1200px;
     margin: auto;
@@ -444,12 +202,6 @@ body::before {
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     border: 2px solid #d4a373;
-}
-
-.cart-item img {
-    width: auto;
-    height: 120px;
-    border-radius: 8px;
 }
 
 input[type="number"] {
@@ -484,9 +236,39 @@ button.remove-item:hover, .checkout-btn:hover {
     border: 2px solid #d4a373;
 }
 
+/* Media Queries */
 @media (max-width: 768px) {
-    .cart-grid {
-        grid-template-columns: 1fr;
+    .option-box, .product, .cart-item {
+        width: 100%;
+        max-width: none;
+        margin-bottom: 15px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .tagline {
+        font-size: 0.875rem;
+    }
+
+    .logo-container {
+        transform: scale(0.7);
     }
 }
+
+@media (max-width: 480px) {
+    .logo-container {
+        transform: scale(0.5);
+    }
+
+    .category img {
+        width: 80%;
+        max-width: 200px;
+    }
+
+    .header-image {
+        width: 150px;
+    }
 }
