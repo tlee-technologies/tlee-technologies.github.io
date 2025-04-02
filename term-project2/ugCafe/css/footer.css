@@ -16,6 +16,7 @@ footer {
     gap: 20px;
 }
 
+/* Footer Links */
 .footer-links {
     display: flex;
     flex-wrap: wrap;
@@ -41,6 +42,7 @@ footer {
     text-decoration: underline;
 }
 
+/* Footer Copyright */
 .footer-copyright {
     display: flex;
     justify-content: center;
@@ -48,7 +50,8 @@ footer {
     flex-wrap: wrap;
 }
 
-#copyright-icon {
+/* Footer Icon Styling */
+.footer-content .copyright-icon {
     height: 15px;
     margin: 0 7px;
     vertical-align: middle;

@@ -3,22 +3,24 @@ const createFooter = () => {
 
     footer.innerHTML = `
      <div class="footer-content">
-            <img src="ugCafe/images/ugCafeLogo.png" class="logo" alt="">
+            <a href="index.html">
+                <img src="ugCafe/images/ugCafeLogo.png" class="logo" alt="U.G. Café Logo">
+            </a>
             <div class="footer-ul-container">
                 <ul class="footer-links">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="temp-menu.html">Menu</a></li>
-                    <li><a href="contact.html">About</a></li>
-                    <li><a href="about.html">Login</a></li>
-                    <li><a href="contact.html">Cart</a></li>
+                    <li><a href="products.html">Menu</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="cart.html">Cart</a></li>
                 </ul>
             </div>
-                <div class="footer-copyright">
-                    <p id="copyright">&copy; 2025 U.G. Café</p>
-                    <img id= "copyright-icon" src="ugCafe/images/coffeeIcon.png" alt="">
+            <div class="footer-copyright">
+                    <p>&copy; 2025 U.G. Café</p>
+                    <img class="copyright-icon" src="ugCafe/images/coffeeIcon.png" alt="">
                     <p>Designed for Ministry</p>
-                    <img id= "copyright-icon" src="ugCafe/images/coffeeIcon.png" alt="">
-                </div>
+                    <img class="copyright-icon" src="ugCafe/images/coffeeIcon.png" alt="">
+            </div>
         </div>
     `;
 }

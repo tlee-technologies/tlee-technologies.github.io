@@ -1,0 +1,115 @@
+/* ====================================================
+   cart.css - Cart Page Styles for U.G. Café
+   ==================================================== */
+
+/* General Cart Section Styles */
+.cart-section {
+    padding: 40px 10vw;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+.cart-section h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #004c99; /* Using your header's blue tone */
+}
+
+/* Cart Container */
+.cart-container {
+    margin-bottom: 20px;
+}
+
+#cart-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item img {
+    width: 100px;
+    height: auto;
+    margin-right: 20px;
+    border-radius: 5px;
+}
+
+.item-details {
+    flex: 1;
+}
+
+.item-title {
+    font-size: 20px;
+    margin: 0 0 5px;
+    color: #d35400; /* Accent color from your product pages */
+}
+
+.item-options,
+.item-comments {
+    font-size: 16px;
+    margin: 2px 0;
+}
+
+.item-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #d35400;
+    margin-left: 20px;
+}
+
+/* Cart Summary */
+.cart-summary {
+    text-align: right;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+#checkout-button {
+    background-color: #b3773e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#checkout-button:hover {
+    background-color: #a2663b;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .cart-item img {
+        width: 80px;
+        margin-bottom: 10px;
+    }
+    
+    .item-price {
+        margin-left: 0;
+        align-self: flex-end;
+    }
+    
+    .cart-summary {
+        text-align: center;
+    }
+}
