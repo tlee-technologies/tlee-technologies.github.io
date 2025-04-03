@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+    let selectedImage = ""; // Global variable to store the selected image URL
+
     const buttons = document.querySelectorAll(".card-button");
 
     buttons.forEach(button => {
@@ -9,21 +11,14 @@ document.addEventListener("DOMContentLoaded", () => {
             const description = encodeURIComponent(button.getAttribute("data-description"));
             const price = encodeURIComponent(button.getAttribute("data-price"));
 
-            // Check if we are on products.html
-            if (window.location.pathname.includes("products.html")) {
-                // Update content dynamically instead of reloading
-                updateProductDetails(title, image, description, price);
-
-                // Scroll to the top smoothly
-                window.scrollTo({ top: 0, behavior: "smooth" });
-            } else {
-                // Redirect to products.html with product details in the URL
-                window.location.href = `products.html?title=${title}&image=${image}&description=${description}&price=${price}`;
-            }
+            // Since we're on products.html, update details dynamically
+            updateProductDetails(title, image, description, price);
+            // Scroll to the top smoothly
+            window.scrollTo({ top: 0, behavior: "smooth" });
         });
     });
 
-    // Function to update product details dynamically
+    // Function to update product details and store the image globally
     function updateProductDetails(title, image, description, price) {
         const productSelected = document.querySelector(".product-selected");
         const productTitle = document.querySelector(".product-title");
@@ -32,33 +27,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (productSelected && productTitle && productDescription && productPrice) {
             if (image) {
-                // Apply both gradient and image together
+                const decodedImage = decodeURIComponent(image);
                 productSelected.style.background = `
-                    linear-gradient(to bottom, #b3773e, #e1e1e1), 
-                    url('${decodeURIComponent(image)}')
+                    linear-gradient(to bottom, #b3773e, #e1e1e1),
+                    url('${decodedImage}')
                 `;
                 productSelected.style.backgroundSize = "cover";
                 productSelected.style.backgroundPosition = "center";
                 productSelected.style.backgroundRepeat = "no-repeat";
-                productSelected.style.backgroundBlendMode = "overlay"; // Blend image & gradient
+                productSelected.style.backgroundBlendMode = "overlay";
+                selectedImage = decodedImage; // Store the image URL
             }
-
             if (title) productTitle.textContent = decodeURIComponent(title);
             if (description) productDescription.textContent = decodeURIComponent(description);
             if (price) productPrice.textContent = decodeURIComponent(price);
         }
     }
 
-    // Check if the URL has parameters (Only runs on products.html)
+    // Check if URL has parameters (for index.html redirection)
     const params = new URLSearchParams(window.location.search);
     if (params.has("title")) {
-        updateProductDetails(params.get("title"), params.get("image"), params.get("description"), params.get("price"));
-
-        // Scroll to the top after loading product details
+        updateProductDetails(
+            params.get("title"),
+            params.get("image"),
+            params.get("description"),
+            params.get("price")
+        );
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    // Handle the modifications form
+    // Handle the modifications form and add-to-cart action
     const addToCartButton = document.getElementById("add-to-cart");
     const modificationForm = document.getElementById("modification-form");
     const flavorCheckboxes = modificationForm.querySelectorAll('input[name="flavors"]');
@@ -75,58 +73,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     addToCartButton.addEventListener("click", () => {
-        // Get selected size
+        // Check if a product has been selected
+        const productTitleElem = document.querySelector(".product-title");
+        if (!productTitleElem || productTitleElem.textContent.trim() === "") {
+            alert("Error: Please select a product before adding to cart.");
+            return; // Stop further execution
+        }
+
+        // Get selected modifications
         const size = modificationForm.querySelector('input[name="size"]:checked').value;
-        // Get selected flavors (as an array)
         const flavors = Array.from(modificationForm.querySelectorAll('input[name="flavors"]:checked')).map(cb => cb.value);
-        // Get special comments
         const comments = modificationForm.querySelector('textarea[name="comments"]').value;
 
-        // Here you can integrate with your cart functionality.
-        // For now, we'll log the modifications along with the product details.
+        // Construct the product object using selectedImage
         const product = {
-            title: document.querySelector(".product-title").textContent,
+            title: productTitleElem.textContent,
             price: document.querySelector(".product-price").textContent,
             size: size,
             flavors: flavors,
-            comments: comments
+            comments: comments,
+            image: selectedImage || "ugCafe/images/default.png"
         };
+
+        // Retrieve and update the cart in localStorage
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push(product);
+        localStorage.setItem("cart", JSON.stringify(cart));
 
         console.log("Product added to cart:", product);
         alert(`Added to cart:\n${product.title}\nSize: ${size} oz\nFlavors: ${flavors.join(", ")}\nComments: ${comments}`);
     });
-});
-
-addToCartButton.addEventListener("click", () => {
-    // Check if a product has been selected
-    const productTitleElem = document.querySelector(".product-title");
-    if (!productTitleElem || productTitleElem.textContent.trim() === "") {
-        alert("Error: Please select a product before adding to cart.");
-        return; // Stop further execution
-    }
-    
-    // Get selected size
-    const size = modificationForm.querySelector('input[name="size"]:checked').value;
-    // Get selected flavors (as an array)
-    const flavors = Array.from(modificationForm.querySelectorAll('input[name="flavors"]:checked')).map(cb => cb.value);
-    // Get special comments
-    const comments = modificationForm.querySelector('textarea[name="comments"]').value;
-    
-    // Construct the product object (include the image URL from URL parameters or fallback)
-    const product = {
-        title: productTitleElem.textContent,
-        price: document.querySelector(".product-price").textContent,
-        size: size,
-        flavors: flavors,
-        comments: comments,
-        image: decodeURIComponent(new URLSearchParams(window.location.search).get("image")) || "ugCafe/images/default.png"
-    };
-
-    // Retrieve current cart from localStorage and update it
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    cart.push(product);
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-    console.log("Product added to cart:", product);
-    alert(`Added to cart:\n${product.title}\nSize: ${size} oz\nFlavors: ${flavors.join(", ")}\nComments: ${comments}`);
 });

@@ -61,30 +61,38 @@
 
 .product-category {
     padding: 20px 10vw;
-    font-family: 'Fustered', cursive;
+    font-family: 'Fusterd', cursive;
     font-size: 50px;
     font-weight: 500;
     text-transform: capitalize;
 }
 
+/* Replace horizontal scrolling flex layout with a grid layout */
 .product-container {
     padding: 0 10vw;
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    white-space: nowrap; /* Prevents wrapping */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
 }
 
-.product-container::-webkit-scrollbar {
-    display: none; /* Hides the scrollbar */
+/* Responsive grid adjustments */
+@media (max-width: 1024px) {
+    .product-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .product-container {
+        grid-template-columns: 1fr;
+    }
 }
 
 .product-card {
-    flex: 0 0 auto;
-    width: 210px;
+    width: 100%;
     height: 280px;
-    margin: 0 60px;
-    margin-bottom: 20px;
+    /* Remove horizontal margins as grid gap provides spacing */
+    margin-bottom: 50%;
     background: linear-gradient(to bottom, #b3773e, #e1e1e1);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -151,7 +159,7 @@
 
 .product-description {
     width: 100%;
-    font-size: 20px; 
+    font-size: 20px;
     height: 50px;
     line-height: 24px;
     overflow: hidden;
@@ -165,26 +173,6 @@
     font-size: 20px;
     font-weight: 900;
     color: #000;
-}
-
-/* product details */
-.product-details {
-    width: 100%;
-    padding: 60px 10vw;
-    display: flex;
-    justify-content: space-between;
-}
-
-.product-selected {
-    flex: 0 0 auto;
-    width: 400px;
-    height: 400px;
-    margin: 0 60px;
-    margin-bottom: 0px;
-    background: linear-gradient(to bottom, #b3773e, #e1e1e1);
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    transition: 0.5s;
 }
 
 /* Mobile Adjustments */
@@ -203,15 +191,13 @@
         text-shadow: 12px 12px 24px #b3773e;
     }
     .product-card {
-        width: 180px;
-        margin: 0 20px;
         height: auto;
     }
     .product-image {
-        height: 250px;
+        height: auto;
     }
     .product-thumb {
-        height: 250px;
+        height: auto;
     }
 }
 
@@ -224,13 +210,6 @@
         font-size: 24px;
     }
     .product-card {
-        width: 160px;
-        margin: 0 10px;
-    }
-    .product-image {
-        height: 200px;
-    }
-    .product-thumb {
-        height: 200px;
+        margin: 0;
     }
 }
