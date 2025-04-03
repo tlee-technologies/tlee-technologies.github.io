@@ -1,27 +1,35 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Load cart items from localStorage and display them
   function loadCart() {
     const cartItemsContainer = document.getElementById("cart-items");
     const cartTotalElement = document.getElementById("cart-total");
     cartItemsContainer.innerHTML = "";
     
-    // Retrieve the cart from localStorage (or start with an empty array)
+    // Retrieve cart data from localStorage; default to an empty array if not found
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    console.log("Cart data:", cart); // Debug: log cart contents
-    let total = 0;
+    let subtotal = 0;
     
     if (cart.length === 0) {
       cartItemsContainer.innerHTML = "<li>Your cart is empty.</li>";
     } else {
+      // Loop through cart items and build the UI for each
       cart.forEach((item, index) => {
-        console.log(`Cart item ${index} image:`, item.image);
-        // Ensure the image path is correct relative to cart.html
+        // Ensure each item has a quantity (default to 1 if not set)
+        if (!item.quantity) {
+          item.quantity = 1;
+        }
+        
+        // Adjust image path if necessary
         let imageUrl = item.image;
-        // If the imageUrl doesn't start with "ugCafe/", prepend it
         if (!imageUrl.startsWith("ugCafe/")) {
           imageUrl = "ugCafe/images/" + imageUrl;
         }
         
+        // Parse the unit price and calculate item total (price * quantity)
+        let unitPrice = parseFloat(item.price.replace('$', ''));
+        let itemTotal = unitPrice * item.quantity;
+        subtotal += itemTotal;
+        
+        // Create the cart item element with a quantity input and total display
         const li = document.createElement("li");
         li.className = "cart-item";
         li.innerHTML = `
@@ -30,10 +38,16 @@ document.addEventListener("DOMContentLoaded", () => {
             <h2 class="item-title">${item.title}</h2>
             <p class="item-options">Size: ${item.size} oz, Flavors: ${item.flavors.join(", ")}</p>
             <p class="item-comments">${item.comments ? "Special: " + item.comments : ""}</p>
+            <label>
+              Quantity: 
+              <input type="number" min="1" value="${item.quantity}" data-index="${index}" class="quantity-input">
+            </label>
+            <p class="item-total">Total: $${itemTotal.toFixed(2)}</p>
           </div>
-          <div class="item-price">${item.price}</div>
+          <div class="item-price">Unit Price: ${item.price}</div>
         `;
-        // Create a Remove button for each cart item
+        
+        // Create and attach the Remove button for this item
         const removeBtn = document.createElement("button");
         removeBtn.textContent = "Remove";
         removeBtn.addEventListener("click", () => {
@@ -43,23 +57,45 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         li.appendChild(removeBtn);
         cartItemsContainer.appendChild(li);
-        
-        // Add the item's price to total (strip the '$' sign first)
-        total += parseFloat(item.price.replace('$', ''));
       });
     }
     
-    cartTotalElement.textContent = "$" + total.toFixed(2);
+    // Calculate tax (6.75%) and final total
+    const tax = subtotal * 0.0675;
+    const finalTotal = subtotal + tax;
+    
+    // Display the subtotal, tax, and final total
+    cartTotalElement.innerHTML = `
+      <p>Subtotal: $${subtotal.toFixed(2)}</p>
+      <p>Tax (6.75%): $${tax.toFixed(2)}</p>
+      <p><strong>Total: $${finalTotal.toFixed(2)}</strong></p>
+    `;
+    
+    // Add event listeners to quantity inputs to update cart when changed
+    const quantityInputs = document.querySelectorAll(".quantity-input");
+    quantityInputs.forEach(input => {
+      input.addEventListener("change", (e) => {
+        const newQuantity = parseInt(e.target.value);
+        const index = e.target.getAttribute("data-index");
+        if (newQuantity < 1) {
+          e.target.value = 1;
+          return;
+        }
+        cart[index].quantity = newQuantity;
+        localStorage.setItem("cart", JSON.stringify(cart));
+        loadCart();
+      });
+    });
   }
   
+  // Initial load of the cart
   loadCart();
 
-  // Checkout button event (you can expand this for your checkout process)
+  // Checkout button event (expand as needed)
   const checkoutBtn = document.getElementById("checkout-button");
   if (checkoutBtn) {
     checkoutBtn.addEventListener("click", () => {
       alert("Proceeding to checkout...");
-      // Insert further checkout handling code here
     });
   }
 });
