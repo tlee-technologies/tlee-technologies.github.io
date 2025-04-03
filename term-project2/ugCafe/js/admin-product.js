@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Admin Products page loaded.');
 
-    // Function to render products in the table
+    // Function to render products into the table's tbody
     function renderProducts(inventory) {
         const tbody = document.querySelector('tbody');
         if (!tbody) {
@@ -30,24 +30,18 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Rendered products:', inventory.products.length);
     }
 
-    // Load inventory from localStorage
-    let inventory = JSON.parse(localStorage.getItem('inventory'));
-    console.log('Loaded inventory:', inventory);
-
-    // If no inventory is found, fetch default products from JSON file
-    if (!inventory || !inventory.products || inventory.products.length === 0) {
-        console.log('No valid inventory found in localStorage. Fetching from JSON file.');
-        fetch('ugCafe/data/products.json')
-            .then(response => response.json())
-            .then(data => {
-                inventory = data;
-                localStorage.setItem('inventory', JSON.stringify(inventory));
-                renderProducts(inventory);
-            })
-            .catch(err => {
-                console.error("Error fetching products JSON:", err);
-            });
-    } else {
-        renderProducts(inventory);
-    }
+    // Always fetch the product data from the JSON file
+    fetch('ugCafe/data/products.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            renderProducts(data);
+        })
+        .catch(error => {
+            console.error('Error fetching products.json:', error);
+        });
 });

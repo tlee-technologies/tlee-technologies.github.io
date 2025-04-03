@@ -13,6 +13,7 @@ const createNav = () => {
             </div>
             <a href="#"><img src="ugCafe/images/userLogo.png" alt=""></a>
             <a href="#"><img src="ugCafe/images/cart.png" alt=""></a>
+            <a href="admin-upload.html" class="admin-link">Admin</a>
         </div>
     </div>
     <ul class="links-container">

@@ -1,24 +1,19 @@
 <!DOCTYPE html>
-<!--
-  Name: Terrance Lee
-  Date: 02.17.2025
-  CSC 372-01
--->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>U.G. Cafe - Products</title>
-  <!-- Load home.css first, then product.css so grid styles override any flex styles -->
   <link rel="stylesheet" href="ugCafe/css/home.css">
   <link rel="stylesheet" href="ugCafe/css/product.css">
   <script defer src="ugCafe/js/nav.js"></script>
   <script defer src="ugCafe/js/footer.js"></script>
   <script defer src="ugCafe/js/products.js"></script>
+  <script defer src="ugCafe/data/products.json"></script>
+
 </head>
 <body>
   <nav class="navbar"></nav>
-
   <!-- Product Selected & Modification Section -->
   <section class="product-selected-details">
     <div class="product-selected-left">
@@ -60,147 +55,11 @@
       </form>
     </div>
   </section>
-
-  <!-- Product Cards Section for Hot Drinks -->
+  <!-- Product Listing Section -->
   <section class="product">
-    <h2 class="product-category">Hot Drinks</h2>
-    <div class="product-container">
-      <!-- Product Card 1: Black Coffee -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="ugCafe/images/blackCoffee.png" class="product-thumb" alt="Black Coffee">
-          <button class="card-button"
-                  data-image="ugCafe/images/blackCoffee.png"
-                  data-title="Black Coffee"
-                  data-description="A classic black coffee made from our finest coffee beans"
-                  data-price="$2.50">
-            View Details
-          </button>
-        </div>
-        <div class="product-info">
-          <h2 class="product-title">Black Coffee</h2>
-          <p class="product-description">A classic black coffee made from our finest coffee beans</p>
-          <p class="product-price">$2.50</p>
-        </div>
-      </div>
-      <!-- Product Card 2: Quick Fix -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="ugCafe/images/quickFix.png" class="product-thumb" alt="Quick Fix">
-          <button class="card-button"
-                  data-image="ugCafe/images/quickFix.png"
-                  data-title="Quick Fix"
-                  data-description="A quick fix for those who need a quick pick-me-up"
-                  data-price="$2.50">
-            View Details
-          </button>
-        </div>
-        <div class="product-info">
-          <h2 class="product-title">Quick Fix</h2>
-          <p class="product-description">A quick fix for those who need a quick pick-me-up</p>
-          <p class="product-price">$2.50</p>
-        </div>
-      </div>
-      <!-- Product Card 3: Chai Tea -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="ugCafe/images/chaiTea.png" class="product-thumb" alt="Chai Tea">
-          <button class="card-button"
-                  data-image="ugCafe/images/chaiTea.png"
-                  data-title="Chai Tea"
-                  data-description="A blend of spices and tea leaves that will warm your soul"
-                  data-price="$2.50">
-            View Details
-          </button>
-        </div>
-        <div class="product-info">
-          <h2 class="product-title">Chai Tea</h2>
-          <p class="product-description">A blend of spices and tea leaves that will warm your soul</p>
-          <p class="product-price">$2.50</p>
-        </div>
-      </div>
-      <!-- Product Card 4: Lemon Ginger Tea -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="ugCafe/images/lemonGingerTea.png" class="product-thumb" alt="Lemon Ginger Tea">
-          <button class="card-button"
-                  data-image="ugCafe/images/lemonGingerTea.png"
-                  data-title="Lemon Ginger Tea"
-                  data-description="A blend of lemon & ginger that will soothe your throat"
-                  data-price="$2.50">
-            View Details
-          </button>
-        </div>
-        <div class="product-info">
-          <h2 class="product-title">Lemon Ginger Tea</h2>
-          <p class="product-description">A blend of lemon & ginger that will soothe your throat</p>
-          <p class="product-price">$2.50</p>
-        </div>
-      </div>
-    </div>
+    <h2 class="product-category">Products</h2>
+    <div id="products-container" class="product-container"></div>
   </section>
-
-  <!-- Product Cards Section for Cold Drinks -->
-  <section class="product">
-    <h2 class="product-category">Cold Drinks</h2>
-    <div class="product-container">
-      <!-- Product Card 5: Iced Black Coffee -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="ugCafe/images/iceBlackCoffee.png" class="product-thumb" alt="Ice Black Coffee">
-          <button class="card-button"
-                  data-image="ugCafe/images/iceBlackCoffee.png"
-                  data-title="Ice Black Coffee"
-                  data-description="A classic chilled black coffee made from our finest coffee beans"
-                  data-price="$2.50">
-            View Details
-          </button>
-        </div>
-        <div class="product-info">
-          <h2 class="product-title">Iced Black Coffee</h2>
-          <p class="product-description">A classic chilled black coffee made from our finest coffee beans</p>
-          <p class="product-price">$2.50</p>
-        </div>
-      </div>
-      <!-- Product Card 6: Iced Quick Fix -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="ugCafe/images/quickFix.png" class="product-thumb" alt="Quick Fix">
-          <button class="card-button"
-                  data-image="ugCafe/images/quickFix.png"
-                  data-title="Quick Fix"
-                  data-description="A little ice, a little quick fix for those who need a quick pick-me-up"
-                  data-price="$2.50">
-            View Details
-          </button>
-        </div>
-        <div class="product-info">
-          <h2 class="product-title">Iced Quick Fix</h2>
-          <p class="product-description">A little ice, a little quick fix for those who need a quick pick-me-up</p>
-          <p class="product-price">$2.50</p>
-        </div>
-      </div>
-      <!-- Product Card 7: T.C.B. Special -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="ugCafe/images/tcb.png" class="product-thumb" alt="T.C.B. Special">
-          <button class="card-button"
-                  data-image="ugCafe/images/tcb.png"
-                  data-title="T.C.B. Special"
-                  data-description="A Taylor Chenel Butler Special, she ate that up!"
-                  data-price="$2.50">
-            View Details
-          </button>
-        </div>
-        <div class="product-info">
-          <h2 class="product-title">T.C.B. Special</h2>
-          <p class="product-description">A Taylor Chenel Butler Special, she ate that up!</p>
-          <p class="product-price">$2.50</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <footer></footer>
 </body>
 </html>
