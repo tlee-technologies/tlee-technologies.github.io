@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.json();
         })
         .then(data => {
+            console.log('Fetched products data:', data);
             renderProducts(data);
         })
         .catch(error => {

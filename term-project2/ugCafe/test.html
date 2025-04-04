@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test JSON Fetch</title>
+</head>
+<body>
+  <ul id="output"></ul>
+  <script>
+    fetch('ugCafe/data/products.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        const output = document.getElementById('output');
+        data.products.forEach(product => {
+          const li = document.createElement('li');
+          li.textContent = `${product.id} - ${product.name}`;
+          output.appendChild(li);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching products.json:', error);
+      });
+  </script>
+</body>
+</html>
