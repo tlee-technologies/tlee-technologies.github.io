@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>U.G. Café - Menu</title>
+  <link rel="stylesheet" href="/css/home.css">
+  <link rel="stylesheet" href="/css/product.css">
+</head>
+<body>
+  <%- include('nav') %>
+
+  <!-- Selected Product Section -->
+  <section class="product-selected-details">
+    <div class="product-selected-left">
+      <div class="product-selected">
+        <% if (selected) { %>
+          <img src="<%= selected.image %>" class="selected-product-thumb" alt="<%= selected.name %>">
+        <% } else { %>
+          <p>No product selected</p>
+        <% } %>
+      </div>
+      <div class="product-info">
+        <h2 class="product-title">
+          <%= selected ? selected.name : 'Select a product' %>
+        </h2>
+        <p class="product-description">
+          <%= selected ? selected.description : '' %>
+        </p>
+        <p class="product-price">
+          <%= selected ? selected.price : '' %>
+        </p>
+      </div>
+    </div>
+    <div class="product-modifications">
+      <% if (selected) { %>
+      <form id="modification-form">
+        <fieldset>
+          <legend>Select Size</legend>
+          <label><input type="radio" name="size" value="12" checked> 12 oz</label>
+          <label><input type="radio" name="size" value="16"> 16 oz</label>
+        </fieldset>
+        <fieldset>
+          <legend>Select up to 2 Flavor Options</legend>
+          <label><input type="checkbox" name="flavors" value="Vanilla"> Vanilla</label>
+          <label><input type="checkbox" name="flavors" value="Caramel"> Caramel</label>
+          <label><input type="checkbox" name="flavors" value="Hazelnut"> Hazelnut</label>
+        </fieldset>
+        <fieldset>
+          <legend>Special Requests</legend>
+          <textarea name="comments" placeholder="Enter any special requests here..."></textarea>
+        </fieldset>
+        <input type="hidden" name="productId" value="<%= selected.id %>">
+        <input type="hidden" name="productTitle" value="<%= selected.name %>">
+        <input type="hidden" name="productImage" value="<%= selected.image %>">
+        <input type="hidden" name="productPrice" value="<%= selected.price %>">
+        <!-- Button type is "button" to prevent form submission -->
+        <button type="button" id="add-to-cart">Add to Cart</button>
+      </form>
+      <% } %>
+    </div>
+  </section>
+
+  <!-- Product Listing Section -->
+  <section class="product">
+    <h2 class="product-category">All Products</h2>
+    <div class="product-container">
+      <% products.forEach(prod => { %>
+        <div class="product-card">
+          <div class="product-image">
+            <img src="<%= prod.image %>" class="product-thumb" alt="<%= prod.name %>">
+            <!-- Reload page with query parameter to select a product -->
+            <button class="card-button" onclick="window.location.href='/products?id=<%= prod.id %>'">
+              View Details
+            </button>
+          </div>
+          <div class="product-info">
+            <h2 class="product-title"><%= prod.name %></h2>
+            <p class="product-description"><%= prod.description %></p>
+            <p class="product-price"><%= prod.price %></p>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+
+  <%- include('footer') %>
+
+  <!-- Client-side script for handling Add to Cart -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const form = document.getElementById("modification-form");
+      if (form) {
+        const addToCartBtn = document.getElementById("add-to-cart");
+        addToCartBtn.addEventListener("click", function() {
+          // Debug log: confirm button was clicked
+          console.log("Add to Cart button clicked.");
+          
+          // Get the selected size
+          const size = form.querySelector('input[name="size"]:checked').value;
+          // Get all checked flavors as an array
+          const flavors = Array.from(form.querySelectorAll('input[name="flavors"]:checked')).map(input => input.value);
+          // Get special requests
+          const comments = form.querySelector('textarea[name="comments"]').value;
+          // Get the product data from hidden fields
+          const productId = form.querySelector('input[name="productId"]').value;
+          const productTitle = form.querySelector('input[name="productTitle"]').value;
+          const productImage = form.querySelector('input[name="productImage"]').value;
+          const productPrice = form.querySelector('input[name="productPrice"]').value;
+          
+          // Build a cart item object
+          const cartItem = {
+            productId,
+            title: productTitle,
+            image: productImage,
+            price: productPrice,
+            size,
+            flavors,
+            comments,
+            quantity: 1
+          };
+          
+          // Debug log: show built cart item
+          console.log("Cart item built:", cartItem);
+          
+          // Retrieve the existing cart from localStorage, or initialize as an empty array
+          let cart = JSON.parse(localStorage.getItem("cart")) || [];
+          cart.push(cartItem);
+          localStorage.setItem("cart", JSON.stringify(cart));
+          
+          // Debug log: display updated cart
+          console.log("Updated cart:", cart);
+          
+          // Redirect to the cart page
+          window.location.href = "/cart";
+        });
+      }
+    });
+  </script>
+</body>
+</html>
