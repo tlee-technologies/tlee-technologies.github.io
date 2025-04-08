@@ -6,7 +6,6 @@
   <title>U.G. Café - Cart</title>
   <link rel="stylesheet" href="/css/home.css">
   <link rel="stylesheet" href="/css/cart.css">
-  <script defer src="/js/cart.js"></script>
 </head>
 <body>
   <%- include('nav') %>
@@ -16,7 +15,7 @@
       <h1>Your Cart</h1>
       <div class="cart-container">
         <ul id="cart-items">
-          <!-- Cart items will be dynamically populated by cart.js -->
+          <!-- Cart items will be dynamically inserted here -->
         </ul>
       </div>
       <div class="cart-summary">
@@ -28,5 +27,91 @@
   
   <%- include('footer') %>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      function loadCart() {
+        const cartItemsContainer = document.getElementById("cart-items");
+        const cartTotalElement = document.getElementById("cart-total");
+        cartItemsContainer.innerHTML = "";
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let subtotal = 0;
+
+        if (cart.length === 0) {
+          cartItemsContainer.innerHTML = "<li>Your cart is empty.</li>";
+        } else {
+          cart.forEach((item, index) => {
+            if (!item.quantity) item.quantity = 1;
+
+            let imageUrl = item.image;
+            if (!imageUrl.startsWith("/")) {
+              imageUrl = "/images/" + imageUrl;
+            }
+
+            let unitPrice = parseFloat(item.price.replace('$', ''));
+            let itemTotal = unitPrice * item.quantity;
+            subtotal += itemTotal;
+
+            const li = document.createElement("li");
+            li.className = "cart-item";
+            li.innerHTML = `
+              <img src="${imageUrl}" alt="${item.title}">
+              <div class="item-details">
+                <h2 class="item-title">${item.title}</h2>
+                <p class="item-options">Size: ${item.size} oz, Flavors: ${item.flavors.join(", ")}</p>
+                <p class="item-comments">${item.comments ? "Special: " + item.comments : ""}</p>
+                <label>
+                  Quantity: 
+                  <input type="number" min="1" value="${item.quantity}" data-index="${index}" class="quantity-input">
+                </label>
+                <p class="item-total">Total: $${itemTotal.toFixed(2)}</p>
+                <div class="item-price">Unit Price: ${item.price}</div>
+              </div>
+              <button class="remove-button" data-index="${index}">Remove</button>
+            `;
+
+            cartItemsContainer.appendChild(li);
+          });
+        }
+
+        const tax = subtotal * 0.0675;
+        const finalTotal = subtotal + tax;
+
+        cartTotalElement.innerText = `$${finalTotal.toFixed(2)}`;
+
+        // Event listeners for quantity updates
+        document.querySelectorAll(".quantity-input").forEach(input => {
+          input.addEventListener("change", (e) => {
+            const newQuantity = parseInt(e.target.value);
+            const index = e.target.dataset.index;
+            if (newQuantity < 1) {
+              e.target.value = 1;
+              return;
+            }
+            cart[index].quantity = newQuantity;
+            localStorage.setItem("cart", JSON.stringify(cart));
+            loadCart();
+          });
+        });
+
+        // Event listeners for remove buttons
+        document.querySelectorAll(".remove-button").forEach(btn => {
+          btn.addEventListener("click", (e) => {
+            const index = e.target.dataset.index;
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            loadCart();
+          });
+        });
+      }
+
+      loadCart();
+
+      const checkoutBtn = document.getElementById("checkout-button");
+      checkoutBtn.addEventListener("click", () => {
+        alert("Proceeding to checkout...");
+      });
+    });
+  </script>
 </body>
 </html>

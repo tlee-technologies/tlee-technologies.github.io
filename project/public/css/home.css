@@ -213,3 +213,9 @@
         margin: 0;
     }
 }
+.image-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
