@@ -1,106 +1,108 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const db = require('./models/db');
 
 // Set the view engine to EJS and the views folder
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Serve static assets (CSS, JS, images)
+// Serve static assets
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Middleware for parsing JSON and URL-encoded data (for forms)
+// Middleware for parsing JSON and form data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Utility function to get products data from JSON
-// Adjust path to match your actual file location
-const getProductsData = () => {
-  const productsData = require('./public/data/products.json');
-  return productsData.products;
-};
+// Load API routes
+const productRoutes = require('./routes/products');
+const cartRoutes = require('./routes/cart');
+app.use('/api/products', productRoutes);
+app.use('/api/cart', cartRoutes); // moved cart API under /api
 
-// Home Page Route
+// Home Page
 app.get('/', (req, res) => {
-  const products = getProductsData();
-  res.render('index', { products });
+  try {
+    const hotDrinks = db.prepare('SELECT * FROM products WHERE category_id = 1').all();
+    const coldDrinks = db.prepare('SELECT * FROM products WHERE category_id = 2').all();
+    res.render('index', { hotDrinks, coldDrinks });
+  } catch (err) {
+    res.status(500).send('Database error');
+  }
 });
 
 // Unified /products route
 app.get('/products', (req, res) => {
-  const products = getProductsData();
-  let selected = null;
-
-  // If there's an "id" query param, try to find that product
-  if (req.query.id) {
+  try {
+    const rows = db.prepare('SELECT * FROM products').all();
     const productId = parseInt(req.query.id);
-    selected = products.find(p => p.id === productId);
-    // If the ID is invalid, you can choose to show no selected product or return a 404
-    // For example:
-    // if (!selected) {
-    //   return res.status(404).send('Product not found');
-    // }
+    const selected = productId ? rows.find(p => p.id === productId) : null;
+    res.render('products', { products: rows, selected });
+  } catch (err) {
+    res.status(500).send('Database error');
   }
-
-  // Render the same products.ejs, passing both products and selected
-  res.render('products', { products, selected });
 });
 
-// Optional: /product route that redirects to /products?id=...
+// Optional redirect route
 app.get('/product', (req, res) => {
   const productId = parseInt(req.query.id);
   return res.redirect(`/products?id=${productId}`);
 });
 
-// Admin Product Listing Page
+// Admin Products Page
 app.get('/admin-products', (req, res) => {
-  const products = getProductsData();
-  res.render('admin-products', { products });
+  try {
+    const sql = `
+      SELECT products.*, categories.name AS category_name
+      FROM products
+      JOIN categories ON products.category_id = categories.id
+    `;
+    const rows = db.prepare(sql).all();
+    res.render('admin-products', { products: rows });
+  } catch (err) {
+    res.status(500).send('Database error');
+  }
 });
 
-// Product Edit Page (expects a query parameter "id")
+// Product Edit Page
 app.get('/product-edit', (req, res) => {
-  const products = getProductsData();
-  const productId = parseInt(req.query.id);
-  const product = products.find(p => p.id === productId) || {};
-  res.render('product-edit', { product });
+  try {
+    const productId = parseInt(req.query.id);
+    const row = db.prepare('SELECT * FROM products WHERE id = ?').get(productId);
+    res.render('product-edit', { product: row || {} });
+  } catch (err) {
+    res.status(500).send('Database error');
+  }
 });
 
-// Admin Bulk Upload Page
+// Admin Upload Page
 app.get('/admin-upload', (req, res) => {
   res.render('admin-upload');
 });
 
-// Cart Page
+// Cart View Page (renders EJS with data)
 app.get('/cart', (req, res) => {
-  res.render('cart');
+  try {
+    const cartItems = db.prepare(`
+      SELECT p.name, p.price, cp.quantity, (p.price * cp.quantity) AS total
+      FROM cart_products cp
+      JOIN products p ON cp.product_id = p.id
+      WHERE cp.cart_id = ?
+    `).all(1);
+
+    res.render('cart', { cart: cartItems });
+  } catch (err) {
+    res.status(500).send('Error loading cart page.');
+  }
 });
 
-// Additional placeholder routes for login, logout, about, and donations
-app.get('/login', (req, res) => {
-  res.send('Login page placeholder');
-});
+// Placeholders for other routes
+app.get('/login', (req, res) => res.send('Login page placeholder'));
+app.get('/logout', (req, res) => res.send('Logout page placeholder'));
+app.get('/about', (req, res) => res.send('About page placeholder'));
+app.get('/donations', (req, res) => res.send('Donations page placeholder'));
 
-app.get('/logout', (req, res) => {
-  res.send('Logout page placeholder');
-});
-
-app.get('/about', (req, res) => {
-  res.send('About page placeholder');
-});
-
-app.get('/donations', (req, res) => {
-  res.send('Donations page placeholder');
-});
-
-// POST route to handle adding items to the cart
-app.post('/cart/add', (req, res) => {
-  const { productId, size, flavors, comments } = req.body;
-  console.log(`Adding product ${productId} with size ${size}, flavors: ${flavors} and comments: ${comments}`);
-  // TODO: Process and save the cart data (e.g., in session or a database)
-  res.redirect('/cart');
-});
-
+// Start Server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

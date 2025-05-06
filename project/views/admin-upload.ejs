@@ -21,22 +21,19 @@
     <p>Select a file with bulk product data to upload. Accepted file formats: JSON, CSV, or text.</p>
     <p>Example file format (JSON):</p>
     <pre>
-{
-  "products": [
-    {
-      "id": 1,
-      "name": "Black Coffee",
-      "description": "A classic black coffee.",
-      "category": "Hot Drinks",
-      "image": "public/images/blackCoffee.png",
-      "price": "$2.50"
-    }
-  ]
-}
+[
+  {
+    "name": "Black Coffee",
+    "description": "A classic black coffee.",
+    "category_id": 1,
+    "image": "images/blackCoffee.png",
+    "price": 2.5
+  }
+]
     </pre>
-    <form id="upload-form" action="/admin-upload" method="post" enctype="multipart/form-data">
-      <label for="product-file">Choose file to upload:</label>
-      <input type="file" id="product-file" name="product-file" accept=".json, .csv, .txt">
+    <form id="bulk-upload-form" enctype="multipart/form-data">
+      <label for="jsonFile">Choose file to upload:</label>
+      <input type="file" id="jsonFile" name="jsonFile" accept=".json">
       <button type="submit">Upload</button>
     </form>
   </main>

@@ -1,35 +1,54 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const params = new URLSearchParams(window.location.search);
-    const productId = parseInt(params.get('id'));
-    if (!productId) {
-      alert('No product ID provided.');
-      return;
-    }
-    let inventory = JSON.parse(localStorage.getItem('inventory')) || { products: [] };
-    const product = inventory.products.find(p => p.id === productId);
-    if (!product) {
-      alert('Product not found.');
-      return;
-    }
-    // Populate form fields
-    document.getElementById('product-id').value = product.id;
-    document.getElementById('product-name').value = product.name;
-    document.getElementById('product-description').value = product.description;
-    document.getElementById('product-category').value = product.category;
-    document.getElementById('product-image').value = product.image;
-    document.getElementById('product-price').value = product.price;
-    
-    document.getElementById('edit-product-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      // Update product details
-      product.name = document.getElementById('product-name').value;
-      product.description = document.getElementById('product-description').value;
-      product.category = document.getElementById('product-category').value;
-      product.image = document.getElementById('product-image').value;
-      product.price = document.getElementById('product-price').value;
-      // Save inventory back to localStorage
-      localStorage.setItem('inventory', JSON.stringify(inventory));
-      alert('Product updated successfully.');
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const productId = params.get('id');
+
+  if (!productId) {
+    alert('No product ID specified.');
+    return;
+  }
+
+  // Fetch product data
+  fetch(`/api/products/${productId}`)
+    .then(res => res.json())
+    .then(product => {
+      document.querySelector('#product-id').value = product.id;
+      document.querySelector('#product-name').value = product.name;
+      document.querySelector('#product-description').value = product.description;
+      document.querySelector('#product-category').value = product.category_id;
+      document.querySelector('#product-image').value = product.image;
+      document.querySelector('#product-price').value = product.price;
+    })
+    .catch(err => {
+      console.error('Error loading product:', err);
+      alert('Failed to load product info.');
+    });
+
+  // Submit update
+  const form = document.querySelector('#edit-product-form');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const updatedProduct = {
+      name: document.querySelector('#product-name').value,
+      description: document.querySelector('#product-description').value,
+      image: document.querySelector('#product-image').value,
+      price: parseFloat(document.querySelector('#product-price').value),
+      category_id: parseInt(document.querySelector('#product-category').value)
+    };
+
+    fetch(`/api/products/admin/edit/${productId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedProduct)
+    })
+    .then(res => res.json())
+    .then(data => {
+      alert(data.message || 'Product updated!');
       window.location.href = '/admin-products';
+    })
+    .catch(err => {
+      console.error('Error updating product:', err);
+      alert('Failed to update product.');
     });
   });
+});

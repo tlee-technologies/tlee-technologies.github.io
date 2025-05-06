@@ -33,11 +33,10 @@ CREATE TABLE carts (
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   user_id INTEGER NOT NULL UNIQUE,
   FOREIGN KEY (user_id) REFERENCES users(id)
- REFERENCES users(id)
 );
 
--- Create the cartproducts table
-CREATE TABLE cartproducts (
+-- Create the cart_products table
+CREATE TABLE cart_products (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   cart_id INTEGER NOT NULL,
   product_id INTEGER NOT NULL,

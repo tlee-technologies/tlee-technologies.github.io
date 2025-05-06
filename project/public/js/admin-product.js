@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Admin Products page loaded.');
 
     // Function to render products into the table's tbody
-    function renderProducts(inventory) {
+    function renderProducts(products) {
         const tbody = document.querySelector('tbody');
         if (!tbody) {
             console.error("No <tbody> element found in the admin-products page.");
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         tbody.innerHTML = '';
 
-        inventory.products.forEach(product => {
+        products.forEach(product => {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${product.id}</td>
@@ -27,22 +27,20 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             tbody.appendChild(row);
         });
-        console.log('Rendered products:', inventory.products.length);
+        console.log('Rendered products:', products.length);
     }
 
-    // Always fetch the product data from the JSON file
-    fetch('./data/products.json')
+    // Always fetch the product data from the backend API
+    fetch('/api/products')
         .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
+            if (!response.ok) throw new Error('Network response was not ok');
             return response.json();
         })
-        .then(data => {
-            console.log('Fetched products data:', data);
-            renderProducts(data);
+        .then(products => {
+            console.log('Fetched products data:', products);
+            renderProducts(products);
         })
         .catch(error => {
-            console.error('Error fetching products.json:', error);
+            console.error('Error fetching products:', error);
         });
 });

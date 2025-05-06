@@ -1,0 +1,16 @@
+[
+    {
+      "name": "Sample Coffee",
+      "description": "Dark roast",
+      "category_id": 1,
+      "image": "/images/sample-coffee.png",
+      "price": 2.99
+    },
+    {
+      "name": "Summer Cold Brew",
+      "description": "Served over ice",
+      "category_id": 2,
+      "image": "/images/coldbrew.png",
+      "price": 3.50
+    }
+  ]

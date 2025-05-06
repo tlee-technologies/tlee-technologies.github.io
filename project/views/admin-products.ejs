@@ -35,21 +35,27 @@
         </tr>
       </thead>
       <tbody>
-        <% products.forEach(product => { %>
+        <% if (products.length === 0) { %>
           <tr>
-            <td><%= product.id %></td>
-            <td><%= product.name %></td>
-            <td><%= product.description %></td>
-            <td><%= product.category %></td>
-            <td><%= product.image %></td>
-            <td><%= product.price %></td>
-            <td>
-              <button onclick="location.href='/product-edit?id=<%= product.id %>'">Edit</button>
-              <button onclick="deleteProduct('<%= product.id %>')">Delete</button>
-              <button onclick="archiveProduct('<%= product.id %>')">Archive</button>
-            </td>
+            <td colspan="7">No products available.</td>
           </tr>
-        <% }); %>
+        <% } else { %>
+          <% products.forEach(product => { %>
+            <tr>
+              <td><%= product.id %></td>
+              <td><%= product.name %></td>
+              <td><%= product.description %></td>
+              <td><%= product.category_name %></td>
+              <td><%= product.image %></td>
+              <td>$<%= product.price.toFixed(2) %></td>
+              <td>
+                <button title="Edit this product" onclick="location.href='/product-edit?id=<%= product.id %>'">Edit</button>
+                <button title="Delete this product" onclick="deleteProduct('<%= product.id %>')">Delete</button>
+                <button title="Temporarily hide this product" onclick="archiveProduct('<%= product.id %>')">Archive</button>
+              </td>
+            </tr>
+          <% }); %>
+        <% } %>
       </tbody>
     </table>
   </main>
