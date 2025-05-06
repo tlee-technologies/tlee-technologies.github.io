@@ -30,24 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Rendered products:', inventory.products.length);
     }
 
-    // Load inventory from localStorage
-    let inventory = JSON.parse(localStorage.getItem('inventory'));
-    console.log('Loaded inventory:', inventory);
-
-    // If no inventory is found, fetch default products from JSON file
-    if (!inventory || !inventory.products || inventory.products.length === 0) {
-        console.log('No valid inventory found in localStorage. Fetching from JSON file.');
-        fetch('/data/products.json')
-            .then(response => response.json())
-            .then(data => {
-                inventory = data;
-                localStorage.setItem('inventory', JSON.stringify(inventory));
-                renderProducts(inventory);
-            })
-            .catch(err => {
-                console.error("Error fetching products JSON:", err);
-            });
-    } else {
-        renderProducts(inventory);
-    }
+    fetch('/api/products')
+        .then(response => response.json())
+        .then(data => renderProducts({ products: data }))
+        .catch(err => console.error("Error fetching products:", err));
 });
