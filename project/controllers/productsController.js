@@ -1,3 +1,4 @@
+//productsController.js
 const db = require('../models/db');
 
 // Get all products or filter by category
@@ -10,7 +11,7 @@ exports.getProductsByCategory = (req, res) => {
     if (category) {
       sql += ' WHERE category_id = ?';
       params.push(category);
-    }
+}
 
     const rows = db.prepare(sql).all(...params);
     res.json(rows);
