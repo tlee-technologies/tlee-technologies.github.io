@@ -126,7 +126,7 @@ iframe {
 }
 .header .profile-image {
   margin-right: 30px;
-  max-width: 200px; 
+  max-width: 75px; 
   height: auto;     
   object-fit: cover; 
 }
