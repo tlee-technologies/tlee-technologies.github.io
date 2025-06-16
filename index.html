@@ -1,27 +1,279 @@
 <!DOCTYPE html>
-<!--
-  Name: Terrance Lee
-  Date: 01.28.2025
-  CSC 372-01
-
-  This is the index.html page for my portfolio of web development work. It includes links to:
--->
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Pages Site </title>
-</head>
-<body>
-    <h1> My GitHub Pages Site </h1>
-    <a href="/csc372-hw-index.html">CSC 372 Homework</a>
-    <br>
-    <a href="/term-project/index.html">Term Project (in progress)"</a>
-    <br>
-    <a href="/term-project2/index.html">Term Project (remastered)"</a>
-    <br>
-    <a href="/project/views/index.ejs">Term Project <i>rework</i>>"</a>
-<h2>hey there !</h2>
 
+<head>
+    <!-- TODO -->
+    <title>YOUR NAME</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet'
+        type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!--    Plugins CSS-->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.css">
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <!-- ******HEADER****** -->
+    <header class="header">
+        <div class="container">
+            <img class="profile-image img-responsive pull-left" src="assets/images/avatar.png" alt="Avatar" />
+            <div class="profile-content pull-left">
+                <!-- TODO -->
+                <h1 class="name">Terrance Lee</h1>
+                <!-- TODO -->
+                <h2 class="desc">	Aspiring Software Developer | Senior at University of North Carolina Greensboro</h2>
+                <ul class="social list-inline">
+                    <li class="list-inline-item">
+                        <!-- TODO --> <a href="http://www.linkedin.com/">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <!-- TODO --> <a href="https://github.com/tlee-technologies/tlee-technologies.github.io">
+                            <i class="fa fa-github-alt"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <!-- TODO --> <a href="http://www.stackoverflow.com">
+                            <i class="fa fa-stack-overflow"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item last-item">
+                        <!-- TODO --> <a href="http://www.codepen.io">
+                            <i class="fa fa-codepen"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-12 col-md-auto pull-right">
+                <!-- TODO --> <a class="btn btn-outline-success me-2" href="assets/files/resume.pdf" target="_blank"><i
+                        class="fa fa-paper-plane"></i>
+                    Get My Resume (PDF)</a>
+            </div><!--//col-->
+            <div class="col-12 col-md-auto pull-right">
+                <a class="btn btn-outline-success me-2" href="projects.html" target="_blank"><i
+                        class="fa fa-diagram-project"></i>
+                    Projects</a>
+            </div><!--//col-->
+        </div>
+    </header>
+    <!--//header-->
+    <!--//container-->
+    <div class="container sections-wrapper">
+        <div class="row">
+            <div class="primary col-md-8 col-sm-12 col-xs-12">
+                <section class="about section">
+                    <div class="section-inner">
+                        <h2 class="heading">About Me</h2>
+                        <div class="content">
+                            <!-- TODO -->
+                            <p> I’m Terrance Lee, a senior Computer Science student at UNCG, graduating in Summer 2026. I’m currently building experience in full-stack development through hands-on projects using Java, Spring Boot, React, and PostgreSQL. I enjoy learning how software works from the ground up, especially how backend systems and databases connect. I’m working toward a career in tech, with growing interest in roles like data analyst or backend developer.
+</p>
+                        </div>
+                        <!--//content-->
+                    </div>
+                    <!--//section-inner-->
+                </section>
+                <section class="education section">
+                    <div class="section-inner">
+                        <h2 class="heading">Education</h2>
+                        <div class="content"></div>
+                        <!--//item-->
+                        <div class="item">
+                            <h3 class="title">
+                                <i class="fa fa-graduation-cap"></i>BSc Computer Science
+                                <!-- TODO --> <span class="university">University of Calgary</span> <span
+                                    class="year">(2026)</span>
+                            </h3>
+
+                            <h6 class="university">Relevant Classes:</h6>
+                            <ul>
+                                <li>Software Engineering</li>
+                                <li>Intro to Databases</li>
+                                <li>Data Structures and Algorithms</li>
+                                <li>Web Development</li>
+                                <li>Systems Programming</li>
+                            </ul>
+                        </div>
+
+                        <!--//content-->
+                    </div>
+                    <!--//section-inner-->
+                </section>
+                                <!--//section-->
+                <section class="experience section">
+                    <div class="section-inner">
+                        <h2 class="heading">Work Experience</h2>
+                        <div class="content">
+                            <div class="item" name="Job1">
+                                <!-- TODO -->
+                                <h3 class="title">Software Engineering Position <span class="place">
+                                        <a href="#">Company A</a>
+                                    </span>
+                                    <span class="year">(2017-2021)</span>
+                                </h3>
+                                <p> • Participated in Agile software development through scrum sprint cycles, daily
+                                    stand-up
+                                    team
+                                    meetings, product planning and grooming sessions, and weekly sprint follow-up
+                                    reports.
+                                    <br>
+                                    • Developed RESTful Java Spring Boot applications using standardized, company-wide
+                                    software
+                                    development guidelines. <br>
+                                    • Successfully conducted API design and development of RESTful Services in 2 months,
+                                    enhancing
+                                    operations of the enterprise product in the business. <br>
+                                    • Performed unit testing of Spring Boot applications using JUnit, Hamcrest, and
+                                    Mockito.
+                                    <br>
+                                    • Followed the continuous integration Jenkins pipeline to deploy applications to
+                                    OpenShift Cloud
+                                    Platform.
+                                </p>
+                            </div>
+                            <!--//item-->
+                            <div class="item" name="Job2">
+                                <h3 class="title">Software Engineering Position - <span class="place">
+                                        <a href="#">Company B</a>
+                                    </span>
+                                    <span class="year">(2011-2016)</span>
+                                </h3>
+                                <p> • Full stack development of proprietary 4-tier weather desktop application for
+                                    company-wide use.
+                                    <br>
+                                    • Work with software development, quality engineering (QE), and product management
+                                    teams
+                                    to design and
+                                    implement features and capabilities of desktop apps. <br>
+                                    • Develop and extend software tools which automate, analyze, and monitor steel
+                                    manufacturing
+                                    processes.
+                                </p>
+                              </div>
+                              <!--//content-->
+                            </div>
+                            <!--//section-inner-->
+                          </section>
+                          <!--//section-->
+                        </div>
+
+            </div> <!--//primary-->
+            <!--     // Aside-->
+            <div class="secondary col-md-4 col-sm-12 col-xs-12">
+                <aside class="info aside section">
+                    <div class="section-inner">
+                        <h2 class="heading">Contact Me</h2>
+                        <div class="content">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <i class="fa fa-map-marker"></i>
+                                    <span class="sr-only">Location:</span>Greensboro, NC
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope"></i>
+                                    <span class="sr-only">Email:</span>
+                                    <!-- TODO --> <a href="mailto:james@website.com">James@website.com</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-link"></i>
+                                    <span class="sr-only">Website:</span>
+                                    <!-- TODO --> <a href="#">http://www.website.com</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--//content-->
+                    </div>
+                    <!--//section-inner-->
+                </aside>
+                <!--//aside-->
+                <aside class="skills aside section">
+                    <div class="section-inner">
+                        <h2 class="heading">Technical Skills</h2>
+                        <div class="content">
+                            <!-- TODO -->
+                            <div class="skillset">
+                                <div class="item">
+                                    <h3 class="level-title">Java <span class="level-label">Intermediate</span></h3>
+                                </div>
+                                <div class="item">
+                                    <h3 class="level-title">Spring Boot <span class="level-label">Intermediate</span></h3>
+                                </div>
+                                <div class="item">
+                                    <h3 class="level-title">PostgreSQL / SQLite <span class="level-label">Intermediate</span></h3>
+                                </div>
+                                <div class="item">
+                                    <h3 class="level-title">React <span class="level-label">Beginner to Intermediate</span></h3>
+                                </div>
+                                <div class="item">
+                                    <h3 class="level-title">Node.js & Express <span class="level-label">Beginner to Intermediate</span></h3>
+                                </div>
+                                <div class="item">
+                                    <h3 class="level-title">HTML & CSS <span class="level-label">Intermediate</span></h3>
+                                </div>
+                                <div class="item">
+                                    <h3 class="level-title">Git & GitHub <span class="level-label">Intermediate</span></h3>
+                                </div>
+                                <div class="item">
+                                    <h3 class="level-title">REST APIs <span class="level-label">Intermediate</span></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <!--//content-->
+                    </div>
+                    <!--//section-inner-->
+                </aside>
+                <!--//section-->
+                <aside class="info section">
+                    <div class="section-inner">
+                        <h2 class="heading">My Work</h2>
+                        <div class="content">
+                            <div class="item">
+                                <h5><a href="projects.html">View My Latest Projects</a></h5>
+                            </div>
+                            <div class="item">
+                                <!-- TODO -->
+                                <h5><a href="https://github.com/tlee-technologies/tlee-technologies.github.io">View My GitHub</a></h5>
+                            </div>
+
+
+                        </div>
+                        <!--//content-->
+                    </div>
+                    <!--//section-inner-->
+                </aside>
+                <!--//section-->
+            </div>
+            <!--//secondary-->
+        </div>
+        <!--//row-->
+    </div>
+    <!-- ******FOOTER****** -->
+    <footer class="footer">
+        <div class="container text-center">
+            <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
+            <small class="copyright">Designed with <i class="fa fa-heart"></i> by <a
+                    href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for
+                developers </small>
+        </div>
+        <!--//container-->
+    </footer>
+    <!--//footer-->
+    <!-- Javascript -->
+    <script type="text/javascript" src="assets/plugins/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/jquery-rss/dist/jquery.rss.min.js"></script>
+    <!-- custom js -->
+    <script type="text/javascript" src="assets/js/main.js"></script>
 </body>
+
 </html>
